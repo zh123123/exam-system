@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta
+	content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
+	name="viewport" />
+<meta name="applicable-device" content="pc,mobile" />
+<title>后台登录 - ES</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<link rel="stylesheet" type="text/css"
+	href="/static/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/static/css/index.css" />
+</head>
+
+<body>
+	<a class="a globalLoginBtn" id="reg">注册</a>
+	<a class="a btn" style="position: fixed;top: 2px;left: 0;" href="/th/index">返回登录</a>
+	<!-- 注册 -->
+	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog"
+		aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
+		<div style="display: table; width: 100%; height: 100%;">
+			<div style="vertical-align: middle; display: table-cell;">
+				<div class="modal-dialog modal-sm" style="width: 540px;">
+					<div class="modal-content" style="border: none;">
+						<div class="col-left"></div>
+						<div class="col-right">
+							<div class="modal-header">
+								<button type="button" id="regist_close" class="close"
+									data-dismiss="modal">
+									<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+								</button>
+								<h4 class="modal-title" id="registModalLabel"
+									style="font-size: 18px;">注册</h4>
+							</div>
+							<div class="modal-body">
+								<section class="box-login v5-input-txt" id="box-login">
+									<form id="regist_form" action="/regist.do" method="post"
+										autocomplete="off">
+
+										<ul>
+											<li class="form-group"><input class="form-control"
+												id="username" maxlength="50" name="username"
+												placeholder="请输入账号" type="text" /></li>
+											<li class="form-group"><input class="form-control"
+												id="password" name="password" placeholder="请输入密码"
+												type="password" /></li>
+												
+											<li class="form-group"><input class="form-control"
+												id="confirmPassword" placeholder="请再次输入密码"
+												type="password" /></li>
+												
+										</ul>
+									</form>
+									
+									<div class="login-box marginB10" style="height:200px;">
+										<button id="regist_btn" type="button"
+											class="btn btn-micv5 btn-block globalLogin">注册</button>
+											
+										<div id="msg" style="margin:5px auto;color:red;"></div>
+									</div>
+
+								</section>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div style="text-align: center;"></div>
+	</div>
+
+
+
+
+	<script type="text/javascript" src="/static/js/jquery2.2.2.min.js"></script>
+	<script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/static/js/common.js"></script>
+	<script type="text/javascript" src="/static/js/login.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			var usernameFlag = false;
+			var passwordFlag = false;
+			
+			$("#login_btn").click(function() {
+				
+				if (usernameFlag && passwordFlag && confirmPasswordFlag)
+					$("#regist_form").submit()
+			})
+			
+			$("#username").blur(function(){
+				usernameFlag = false;
+				var uPattern = /^\w{4,16}$/;
+				if(!uPattern.test(this.value)){
+					$("#msg").html("用户名为4到16位（由字母，数字，下划线组成）");
+				}else{
+					$.ajax({
+	                    method : "GET",
+	                    url : "../validateUsername?username=" + $("#username").val(),
+	                    success : function(res){
+	                    	//console.log(res)
+	                    	if(res.status == 200) {
+	                    		$("#msg").html(res.data);
+	                    		if(res.data == "用户名可用")
+	                    			usernameFlag = true;
+	                    	}else if(res.status == 500){
+	                    		$("#msg").html(res.msg);
+	                    	}
+	                    }
+	                })
+				}
+				
+            })
+            
+            
+            $("#password").blur(function(){
+            	if( !usernameFlag ) return;
+            	passwordFlag = false;
+				var pPattern = /^(\w|[.]){6,16}$/;
+				if(!pPattern.test(this.value)){
+					$("#msg").html("密码为6到16位（由字母，数字，下划线，小数点组成）");
+				}else{
+					$("#msg").html("密码格式正确");
+					passwordFlag = true;
+				}
+            })
+            
+           $("#regist_btn").click(function(){
+        	  if( !(usernameFlag && passwordFlag) )
+        		  return ;
+        	  var password = $("#password").val();
+        	  var confirmPassword = $("#confirmPassword").val();
+        	  if(password == confirmPassword)
+        		  $("#regist_form").submit()
+        	  else{
+        		  $("#msg").html("两次输入的密码不一致");
+        	  }
+        		  
+           })
+		
+           $("#reg").click()
+		});
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta
+	content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
+	name="viewport" />
+<meta name="applicable-device" content="pc,mobile" />
+<title>后台登录 - ES</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<link rel="stylesheet" type="text/css"
+	href="/static/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/static/css/index.css" />
+</head>
+
+<body>
+	<a class="a globalLoginBtn" id="log">登录</a>
+	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog"
+		aria-labelledby="mySmallModalLabel" aria-hidden="true"
+		style="display: none;">
+		<div style="display: table; width: 100%; height: 100%;">
+			<div style="vertical-align: middle; display: table-cell;">
+				<div class="modal-dialog modal-sm" style="width: 540px;">
+					<div class="modal-content" style="border: none;">
+						<div class="col-left"></div>
+						<div class="col-right">
+							<div class="modal-header">
+								<button type="button" id="login_close" class="close"
+									data-dismiss="modal">
+									<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+								</button>
+								<h4 class="modal-title" id="loginModalLabel"
+									style="font-size: 18px;">登录</h4>
+							</div>
+							<div class="modal-body">
+								<section class="box-login v5-input-txt" id="box-login">
+									<form id="login_form" action="/login" method="post"
+										autocomplete="off">
+										<input type="hidden" id="account" th:value="${account?.username}" />
+										<ul>
+											<li class="form-group"><!-- <input class="form-control"
+												id="username" maxlength="50" name="username"
+												placeholder="请输入账号" type="text" th:value="${account?.username}"/> -->
+												<input class="form-control"
+												id="username" maxlength="50" name="username"
+												placeholder="请输入账号" type="text" th:value="123123"/>
+												
+												</li>
+											<li class="form-group"><!-- <input class="form-control"
+												id="password" name="password" placeholder="请输入密码"
+												type="password" th:value="${account?.password}"/> -->
+												<input class="form-control"
+												id="password" name="password" placeholder="请输入密码"
+												type="password" th:value="123123"/>
+												
+												</li>
+
+										</ul>
+									</form>
+									<p class="good-tips marginB10">
+										<a id="btnForgetpsw" class="fr">忘记密码？</a>还没有账号？<a
+											href="/th/regist" id="btnRegister">立即注册</a>
+									</p>
+									<div class="login-box marginB10">
+										<button id="login_btn" type="button"
+											class="btn btn-micv5 btn-block globalLogin">登录</button>
+										<div id="msg" style="margin:5px auto;color:red;"></div>
+									</div>
+
+
+									<div class="threeLogin">
+										<span>其他方式登录</span><a class="nqq" href="javascript:;"></a><a
+											class="nwx" href="javascript:;"></a>
+										<!--<a class="nwb"></a>-->
+									</div>
+
+								</section>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div style="text-align: center;"></div>
+	</div>
+
+	<script type="text/javascript" src="/static/js/jquery2.2.2.min.js"></script>
+	<script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/static/js/common.js"></script>
+	<script type="text/javascript" src="/static/js/login.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			
+			$("#login_btn").click(function() {
+				var username = $("#username").val();
+				var password = $("#password").val();
+				if (username && password){
+					$.ajax({
+	                    method : "POST",
+	                    url : "../login.do",
+	                    data :{
+	                    	username : $("#username").val(),
+	                    	password : $("#password").val()
+	                    },
+	                    success : function(res){
+	                    	console.log(res)
+	                    	if(res.status == 200) {
+	                    		//登陆成功
+	                    		$("#msg").html("登陆成功");
+	                    		$("#login_form").submit();
+	                    		
+	                    	}else if(res.status == 500){
+	                    		$("#msg").html(res.msg);
+	                    	} 
+	                    }
+	                })	
+				}
+			})
+			
+	
+			if($("#account").val()){
+				$("#log").click()
+				flag = false;
+			}
+			
+		});
+		
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

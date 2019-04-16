@@ -1,0 +1,251 @@
+﻿<!--_meta 作为公共模版分离出去-->
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport"
+	content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="Bookmark" href="favicon.ico">
+<link rel="Shortcut Icon" href="favicon.ico" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css"
+	href="/static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css"
+	href="/static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css"
+	href="/static/lib/Hui-iconfont/1.0.8/iconfont.css" />
+<link rel="stylesheet" type="text/css"
+	href="/static/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css"
+	href="/static/h-ui.admin/css/style.css" />
+<link rel="stylesheet" type="text/css"
+	href="/static/css/bootstrap.min.css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<!--/meta 作为公共模版分离出去-->
+<style rel="stylesheet" type="text/css">
+
+	.icontent {
+		padding : 30px 100px;
+		
+	}
+	.icontent p{
+		text-indent:2em;
+		line-height:25px;
+		font-size:15px;
+		padding : 20px;
+	}
+</style>
+<title>ES - 主页</title>
+<meta name="keywords" content="ES为一个考试扩展系统，为考试增加人脸验证服务">
+<meta name="description"
+	content="ES 是由 Z-Studio 开发的考试扩展系统，为考试增加人脸验证服务，使考试可实现无证件化以及减少甚至消除替考现象">
+</head>
+<body>
+	<!--_header 作为公共模版分离出去-->
+	<header class="navbar-wrapper">
+		<div class="navbar navbar-fixed-top">
+			<div class="container-fluid cl">
+				<a class="logo navbar-logo f-l mr-10 hidden-xs" href="javascript:;">ES</a>
+				<a class="logo navbar-logo-m f-l mr-10 visible-xs"
+					href="javascript:;">Z-Studio</a> <span
+					class="logo navbar-slogan f-l mr-10 hidden-xs">v1.0</span> <a
+					aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs"
+					href="javascript:;">&#xe667;</a>
+				<!-- <nav class="nav navbar-nav">
+					<ul class="cl">
+						<li class="dropDown dropDown_hover"><a href="javascript:;"
+							class="dropDown_A"><i class="Hui-iconfont">&#xe600;</i> 新增 <i
+								class="Hui-iconfont">&#xe6d5;</i></a>
+							<ul class="dropDown-menu menu radius box-shadow">
+								<li><a href="javascript:;"
+									onclick="article_add('添加资讯','article-add.html')"><i
+										class="Hui-iconfont">&#xe616;</i> 资讯</a></li>
+								<li><a href="javascript:;"
+									onclick="picture_add('添加资讯','picture-add.html')"><i
+										class="Hui-iconfont">&#xe613;</i> 图片</a></li>
+								<li><a href="javascript:;"
+									onclick="product_add('添加资讯','product-add.html')"><i
+										class="Hui-iconfont">&#xe620;</i> 产品</a></li>
+								<li><a href="javascript:;"
+									onclick="member_add('添加用户','member-add.html','','510')"><i
+										class="Hui-iconfont">&#xe60d;</i> 用户</a></li>
+							</ul></li>
+					</ul>
+				</nav> -->
+				<nav id="Hui-userbar"
+					class="nav navbar-nav navbar-userbar hidden-xs">
+					<ul class="cl">
+						<li class="dropDown dropDown_hover"><a href="javascript:;"
+							class="dropDown_A""><span th:text="${session.user?.name}">用户名</span><i
+								class="Hui-iconfont">&#xe6d5;</i></a>
+							<ul class="dropDown-menu menu radius box-shadow">
+								<li><a href="javascript:;" onClick="myselfinfo()">个人信息</a></li>
+								<li><a href="/logout">切换账户</a></li>
+								<li><a href="/logout">退出</a></li>
+							</ul></li>
+
+						<li id="Hui-skin" class="dropDown right dropDown_hover"><a
+							href="javascript:;" class="dropDown_A" title="换肤"><i
+								class="Hui-iconfont" style="font-size: 18px">&#xe62a;</i></a>
+							<ul class="dropDown-menu menu radius box-shadow">
+								<li><a href="javascript:;" data-val="default"
+									title="默认（黑色）">默认（黑色）</a></li>
+								<li><a href="javascript:;" data-val="blue" title="蓝色">蓝色</a></li>
+								<li><a href="javascript:;" data-val="green" title="绿色">绿色</a></li>
+								<li><a href="javascript:;" data-val="red" title="红色">红色</a></li>
+								<li><a href="javascript:;" data-val="yellow" title="黄色">黄色</a></li>
+								<li><a href="javascript:;" data-val="orange" title="橙色">橙色</a></li>
+								<li><a href="javascript:;" data-val="white" title="白色">白色</a></li>
+							</ul></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</header>
+	<!--/_header 作为公共模版分离出去-->
+
+	<!--_menu 作为公共模版分离出去-->
+	<aside class="Hui-aside">
+
+		<div class="menu_dropdown bk_2">
+		
+			<dl id="menu-comments">
+				<dt>
+					<i class="Hui-iconfont"></i> <a href="/home" style="color:#333">首页</a><i
+						class="Hui-iconfont menu_dropdown-arrow"></i>
+				</dt>
+			</dl>
+			<dl id="menu-article">
+				<dt class="selected">
+					<i class="Hui-iconfont">&#xe616;</i> 使用前必读 <i
+						class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
+				</dt>
+				<dd style="display: block">
+					<ul>
+						<li><a href="/home" title="首页">首页</a></li>
+						<li class="current"><a href="javascript:;" title="使用教程">使用教程</a></li>
+					</ul>
+				</dd>
+			</dl>
+			<dl id="menu-picture">
+				<dt>
+					<i class="Hui-iconfont">&#xe627;</i> 开始使用 <i
+						class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
+				</dt>
+				<dd>
+					<ul>
+						<li><a href="/home/create" title="创建项目">创建项目</a></li>
+						<li><a href="/home/db" title="导入数据库视图">数据库初始化</a></li>
+						<li><a href="/home/excel" title="导入数据库视图">Excel初始化</a></li>
+					</ul>
+				</dd>
+			</dl>
+			<dl id="menu-product">
+				<dt>
+					<i class="Hui-iconfont">&#xe681;</i> 我的项目<i
+						class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
+				</dt>
+				<dd>
+					<ul th:each="exam : ${session.examList}">
+						<li><a th:href="@{'/home/exam?exam=' + ${exam.id}}" th:title="${exam.ename}"
+							th:text="${exam.ename}"> 算法与数据结构 </a></li>
+					</ul>
+				</dd>
+			</dl>
+			
+			<!-- <div th:each="exam : ${session.examList}">
+				<dl id="menu-member">
+					<dt>
+						<i class="Hui-iconfont">&#xe60d;</i> <span th:text="${exam.ename}"></span>
+						<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
+					</dt>
+					<dd>
+						<ul>
+							<li><a href="javascript:;" title="数据信息">数据信息</a></li>
+							<li><a href="javascript:;" title="监考教师">监考教师</a></li>
+							<li><a href="javascript:;" title="应试考生">应试考生</a></li>
+							<li><a href="javascript:;" title="删除项目">删除项目</a></li>
+						</ul>
+					</dd>
+				</dl>
+			</div> -->
+
+			<dl id="menu-system">
+				<dt>
+					<i class="Hui-iconfont">&#xe70c;</i> 联系我们 <i
+						class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
+				</dt>
+				<dd>	
+					<ul>
+						<li><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=805969154&site=qq&menu=yes" title="QQ">QQ</a></li>
+						<li><a target="_blank" href="/home/Email" title="E-mail">E-mail</a></li>
+					</ul>
+				</dd>
+			</dl>
+		</div>
+	</aside>
+	<div class="dislpayArrow hidden-xs">
+		<a class="pngfix" href="javascript:void(0);"
+			onClick="displaynavbar(this)"></a>
+	</div>
+	<!--/_menu 作为公共模版分离出去-->
+
+	<section class="Hui-article-box">
+		<nav class="breadcrumb">
+			<i class="Hui-iconfont"></i> <a href="/home" class="maincolor">首页</a>
+		</nav>
+		<div class="Hui-article cl pd-20 h3">使用教程</article>
+			<div class="icontent">
+				<h4><strong>1 介绍</strong></h4>
+				<p> 目前考试多数需要携带各种证件（身份证，准考证，学生证等），每次考试都或多或少有人遗失或是忘带证件无法考试。 考生身份核实多由监考老师人眼识别，存在失误，不乏有替考现象 。 </p>
+				<p> 基于以上问题，我们开发了无证化考试系统，此系统为第三方软件，对原系统无影响，原考试系统只需通过数据库视图或是 Excel提供一些所必须的数据即可使用该系统。 使用原考试系统提供的数据初始化本系统即可加入人脸验证识别功能，实现无证件化的考试（即人脸验证身份，无需再核对 各种证件），同时也可以减少替考现象。  </p>
+				
+				<h4><strong>2 使用规范</strong></h4>
+				<p> <strong> 2.1 创建考试项目 </strong></p>
+				<p> <img src="/static/images/create.png" alt="创建考试项目" /> </p>
+				<p> <strong> 2.2 数据初始化 </strong></p>
+				<p> 系统需要获取一些必要的数据进行初始化，数据结构如下： </p>
+				<p>监考教师信息（ 教师编号，教师姓名，照片，监考考场）</p>
+				<p>考试学生信息（考生编号[准考证号] ，学生姓名，照片，所在考场）</p>
+				<p> 2.1.1 <strong><a href="/home/db">数据库视图初始化 </a></strong></p>
+				<p> 数据库初始化 </p>
+				<p style="color:red;">  ① 创建stu_view ,tea_view 两个所必需的视图</p>
+				<p style="color:red;">	② stu_view (snum , name , img ,room) </p>
+				<p style="color:red;">	③ tea_view (tnum , name , img ,room) </p>
+				<p style="color:red;">	④ 创建一个数据库用户，仅提供这两张视图的查询权限即可</p>
+				<p> <img src="/static/images/importDB.png" alt="数据库初始化" /> </p>
+				
+				<p> 2.1.2 <strong><a href="/home/excel">Excel初始化 </a></strong></p>
+				<p> Excel初始化 </p>
+				<p>(...)</p>
+			</div>
+		</div>
+
+	</section>
+
+	<!--_footer 作为公共模版分离出去-->
+	<script type="text/javascript"
+		src="/static/lib/jquery/1.9.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/static/lib/layer/2.4/layer.js"></script>
+	<script type="text/javascript" src="/static/h-ui/js/H-ui.js"></script>
+	<script type="text/javascript"
+		src="/static/h-ui.admin/js/H-ui.admin.page.js"></script>
+	<!--/_footer /作为公共模版分离出去-->
+
+	<!--请在下方写此页面业务相关的脚本-->
+	<script type="text/javascript">
+		
+	</script>
+	<!--/请在上方写此页面业务相关的脚本-->
+
+</body>
+</html>

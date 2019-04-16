@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.Z.mapper.StudentMapper" >
+  <resultMap id="BaseResultMap" type="com.Z.pojo.Student" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="snum" property="snum" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="img" property="img" jdbcType="VARCHAR" />
+    <result column="room" property="room" jdbcType="VARCHAR" />
+    <result column="exam_id" property="examId" jdbcType="VARCHAR" />
+    <result column="reg_img" property="regImg" jdbcType="VARCHAR" />
+    <result column="reg_status" property="regStatus" jdbcType="TINYINT" />
+  </resultMap>
+</mapper>

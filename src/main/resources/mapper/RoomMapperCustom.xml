@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.Z.mapper.RoomMapperCustom" >
+  
+  <!-- 查询户所有考场 -->
+	<select id="selectAllRoomByExamId" resultType="Room" parameterType="java.lang.String" >
+		select room , count(*) as count from student where exam_id=#{examId} group by room 
+	</select>
+</mapper>
