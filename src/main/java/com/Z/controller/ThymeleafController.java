@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/th")
 public class ThymeleafController {
-
+	
 	@RequestMapping(value = { "/index", "/" })
 	public String index() {
 
